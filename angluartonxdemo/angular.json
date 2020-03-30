@@ -1,0 +1,142 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "angluartonxdemo": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/angluartonxdemo",
+      "sourceRoot": "apps/angluartonxdemo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/angluartonxdemo",
+            "index": "apps/angluartonxdemo/src/index.html",
+            "main": "apps/angluartonxdemo/src/main.ts",
+            "polyfills": "apps/angluartonxdemo/src/polyfills.ts",
+            "tsConfig": "apps/angluartonxdemo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/angluartonxdemo/src/favicon.ico",
+              "apps/angluartonxdemo/src/assets"
+            ],
+            "styles": [
+              "apps/angluartonxdemo/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/angluartonxdemo/src/environments/environment.ts",
+                  "with": "apps/angluartonxdemo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "angluartonxdemo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "angluartonxdemo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angluartonxdemo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/angluartonxdemo/src/test.ts",
+            "polyfills": "apps/angluartonxdemo/src/polyfills.ts",
+            "tsConfig": "apps/angluartonxdemo/tsconfig.spec.json",
+            "karmaConfig": "apps/angluartonxdemo/karma.conf.js",
+            "assets": [
+              "apps/angluartonxdemo/src/favicon.ico",
+              "apps/angluartonxdemo/src/assets"
+            ],
+            "styles": [
+              "apps/angluartonxdemo/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/angluartonxdemo/tsconfig.app.json",
+              "apps/angluartonxdemo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "angluartonxdemo-e2e": {
+      "projectType": "application",
+      "root": "apps/angluartonxdemo-e2e",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/angluartonxdemo-e2e/protractor.conf.js",
+            "devServerTarget": "angluartonxdemo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angluartonxdemo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/angluartonxdemo-e2e/tsconfig.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "angluartonxdemo",
+  "cli": {
+    "analytics": false
+  }
+}
