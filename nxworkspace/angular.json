@@ -116,6 +116,153 @@
           }
         }
       }
+    },
+    "ecommerce": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/ecommerce",
+      "sourceRoot": "apps/ecommerce/src",
+      "prefix": "nxworkspace",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ecommerce",
+            "index": "apps/ecommerce/src/index.html",
+            "main": "apps/ecommerce/src/main.ts",
+            "polyfills": "apps/ecommerce/src/polyfills.ts",
+            "tsConfig": "apps/ecommerce/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/ecommerce/src/favicon.ico",
+              "apps/ecommerce/src/assets"
+            ],
+            "styles": ["apps/ecommerce/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ecommerce/src/environments/environment.ts",
+                  "with": "apps/ecommerce/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ecommerce:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ecommerce:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ecommerce:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ecommerce/tsconfig.app.json",
+              "apps/ecommerce/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ecommerce/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ecommerce/jest.config.js",
+            "tsConfig": "apps/ecommerce/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/ecommerce/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ecommerce-e2e": {
+      "root": "apps/ecommerce-e2e",
+      "sourceRoot": "apps/ecommerce-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ecommerce-e2e/cypress.json",
+            "tsConfig": "apps/ecommerce-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ecommerce:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ecommerce:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ecommerce-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ecommerce-e2e/**"]
+          }
+        }
+      }
+    },
+    "core": {
+      "projectType": "library",
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "prefix": "nxworkspace",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "tsConfig": "libs/core/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

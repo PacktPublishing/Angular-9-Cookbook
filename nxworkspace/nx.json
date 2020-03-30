@@ -17,6 +17,16 @@
     "nxdemo-e2e": {
       "tags": [],
       "implicitDependencies": ["nxdemo"]
+    },
+    "ecommerce": {
+      "tags": []
+    },
+    "ecommerce-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ecommerce"]
+    },
+    "core": {
+      "tags": []
     }
   }
 }
