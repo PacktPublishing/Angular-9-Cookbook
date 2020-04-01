@@ -17,8 +17,13 @@
             "polyfills": "apps/nxdemo/src/polyfills.ts",
             "tsConfig": "apps/nxdemo/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/nxdemo/src/favicon.ico", "apps/nxdemo/src/assets"],
-            "styles": ["apps/nxdemo/src/styles.css"],
+            "assets": [
+              "apps/nxdemo/src/favicon.ico",
+              "apps/nxdemo/src/assets"
+            ],
+            "styles": [
+              "apps/nxdemo/src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -76,7 +81,10 @@
               "apps/nxdemo/tsconfig.app.json",
               "apps/nxdemo/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/nxdemo/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/nxdemo/**"
+            ]
           }
         },
         "test": {
@@ -111,8 +119,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/nxdemo-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/nxdemo-e2e/**"]
+            "tsConfig": [
+              "apps/nxdemo-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/nxdemo-e2e/**"
+            ]
           }
         }
       }
@@ -137,7 +150,11 @@
               "apps/ecommerce/src/favicon.ico",
               "apps/ecommerce/src/assets"
             ],
-            "styles": ["apps/ecommerce/src/styles.css"],
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "apps/ecommerce/src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -195,7 +212,10 @@
               "apps/ecommerce/tsconfig.app.json",
               "apps/ecommerce/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ecommerce/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ecommerce/**"
+            ]
           }
         },
         "test": {
@@ -204,7 +224,11 @@
             "jestConfig": "apps/ecommerce/jest.config.js",
             "tsConfig": "apps/ecommerce/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "apps/ecommerce/src/test-setup.ts"
+            "setupFile": "apps/ecommerce/src/test-setup.ts",
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+            ]
           }
         }
       }
@@ -230,8 +254,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ecommerce-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ecommerce-e2e/**"]
+            "tsConfig": [
+              "apps/ecommerce-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ecommerce-e2e/**"
+            ]
           }
         }
       }
@@ -249,7 +278,10 @@
               "libs/core/tsconfig.lib.json",
               "libs/core/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/core/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/core/**"
+            ]
           }
         },
         "test": {
