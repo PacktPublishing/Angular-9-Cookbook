@@ -17,13 +17,8 @@
             "polyfills": "apps/nxdemo/src/polyfills.ts",
             "tsConfig": "apps/nxdemo/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/nxdemo/src/favicon.ico",
-              "apps/nxdemo/src/assets"
-            ],
-            "styles": [
-              "apps/nxdemo/src/styles.css"
-            ],
+            "assets": ["apps/nxdemo/src/favicon.ico", "apps/nxdemo/src/assets"],
+            "styles": ["apps/nxdemo/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -81,10 +76,7 @@
               "apps/nxdemo/tsconfig.app.json",
               "apps/nxdemo/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/nxdemo/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/nxdemo/**"]
           }
         },
         "test": {
@@ -119,13 +111,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/nxdemo-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/nxdemo-e2e/**"
-            ]
+            "tsConfig": ["apps/nxdemo-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/nxdemo-e2e/**"]
           }
         }
       }
@@ -191,7 +178,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ecommerce:build"
+            "browserTarget": "ecommerce:build",
+            "proxyConfig": "apps/ecommerce/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -212,10 +200,7 @@
               "apps/ecommerce/tsconfig.app.json",
               "apps/ecommerce/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ecommerce/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/ecommerce/**"]
           }
         },
         "test": {
@@ -254,13 +239,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/ecommerce-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ecommerce-e2e/**"
-            ]
+            "tsConfig": ["apps/ecommerce-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ecommerce-e2e/**"]
           }
         }
       }
@@ -278,10 +258,7 @@
               "libs/core/tsconfig.lib.json",
               "libs/core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/core/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/core/**"]
           }
         },
         "test": {
@@ -295,6 +272,61 @@
         }
       },
       "schematics": {}
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
